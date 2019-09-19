@@ -1960,6 +1960,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -37359,60 +37389,163 @@ var staticRenderFns = [
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "row mt-3" }, [
           _c("div", { staticClass: "col-md-12" }, [
-            _c("div", { staticClass: "box-body table-responsive no-padding" }, [
-              _c("table", { staticClass: "table table-hover" }, [
-                _c("h3", { staticClass: "box-title" }, [_vm._v("USUARIOS")]),
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _c("div", { staticClass: "card-title" }, [
+                  _c("h4", [_vm._v("USUARIOS")])
+                ]),
                 _vm._v(" "),
-                _c("tbody", [
-                  _c("tr", [
-                    _c("th", [_vm._v("Nombre")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Apellidos")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Status")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Tipo")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Email")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Modificar")])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("183")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("John Doe")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("11-7-2014")]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("span", { staticClass: "label label-success" }, [
-                        _vm._v("Approved")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(
-                        "Bacon ipsum dolor sit amet salami venison chicken flank fatback doner."
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fas fa-edit green" })
+                _c("div", { staticClass: "card-tools" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "modal",
+                        "data-target": "#addnew"
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-user-plus ta-fw" })]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "box-body table-responsive no-padding" },
+                [
+                  _c("table", { staticClass: "table table-hover" }, [
+                    _c("tbody", [
+                      _c("tr", [
+                        _c("th", [_vm._v("Nombre")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Apellidos")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Status")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Tipo")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Email")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Modificar")])
                       ]),
-                      _vm._v(
-                        "\r\n                               |\r\n                               "
-                      ),
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fas fa-trash rojo" })
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("183")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("John Doe")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("11-7-2014")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("span", { staticClass: "label label-success" }, [
+                            _vm._v("Approved")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "Bacon ipsum dolor sit amet salami venison chicken flank fatback doner."
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", { staticClass: "fas fa-edit green" })
+                          ]),
+                          _vm._v(
+                            "\r\n                               |\r\n                               "
+                          ),
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", { staticClass: "fas fa-trash rojo" })
+                          ])
+                        ])
                       ])
                     ])
                   ])
-                ])
-              ])
+                ]
+              )
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "modal fade",
+              attrs: {
+                id: "addnew",
+                tabindex: "-1",
+                role: "dialog",
+                "aria-labelledby": "addnewLabel",
+                "aria-hidden": "true"
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "modal-dialog modal-dialog-centered",
+                  attrs: { role: "document" }
+                },
+                [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _c("div", { staticClass: "modal-header" }, [
+                      _c(
+                        "h5",
+                        {
+                          staticClass: "modal-title",
+                          attrs: { id: "addnewLabel" }
+                        },
+                        [_vm._v("Nuevo Usuario")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "close",
+                          attrs: {
+                            type: "button",
+                            "data-dismiss": "modal",
+                            "aria-label": "Close"
+                          }
+                        },
+                        [
+                          _c("span", { attrs: { "aria-hidden": "true" } }, [
+                            _vm._v("×")
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-body" }, [
+                      _vm._v("\r\n                    ...\r\n                ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-footer" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { type: "button", "data-dismiss": "modal" }
+                        },
+                        [_vm._v("Cerrar")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "button" }
+                        },
+                        [_vm._v("Guardar")]
+                      )
+                    ])
+                  ])
+                ]
+              )
+            ]
+          )
         ])
       ])
     ])
