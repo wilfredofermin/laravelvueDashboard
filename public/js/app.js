@@ -1960,15 +1960,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -37366,21 +37357,25 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card card-primary card-outline" }, [
       _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "row mt-3" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box-body table-responsive no-padding" }, [
               _c("table", { staticClass: "table table-hover" }, [
+                _c("h3", { staticClass: "box-title" }, [_vm._v("USUARIOS")]),
+                _vm._v(" "),
                 _c("tbody", [
                   _c("tr", [
-                    _c("th", [_vm._v("ID")]),
+                    _c("th", [_vm._v("Nombre")]),
                     _vm._v(" "),
-                    _c("th", [_vm._v("User")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Date")]),
+                    _c("th", [_vm._v("Apellidos")]),
                     _vm._v(" "),
                     _c("th", [_vm._v("Status")]),
                     _vm._v(" "),
-                    _c("th", [_vm._v("Reason")])
+                    _c("th", [_vm._v("Tipo")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Email")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Modificar")])
                   ]),
                   _vm._v(" "),
                   _c("tr", [
@@ -37400,66 +37395,18 @@ var staticRenderFns = [
                       _vm._v(
                         "Bacon ipsum dolor sit amet salami venison chicken flank fatback doner."
                       )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("219")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("Alexander Pierce")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("11-7-2014")]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("span", { staticClass: "label label-warning" }, [
-                        _vm._v("Pending")
-                      ])
                     ]),
                     _vm._v(" "),
                     _c("td", [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("i", { staticClass: "fas fa-edit green" })
+                      ]),
                       _vm._v(
-                        "Bacon ipsum dolor sit amet salami venison chicken flank fatback doner."
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("657")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("Bob Doe")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("11-7-2014")]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("span", { staticClass: "label label-primary" }, [
-                        _vm._v("Approved")
+                        "\r\n                               |\r\n                               "
+                      ),
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("i", { staticClass: "fas fa-trash rojo" })
                       ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(
-                        "Bacon ipsum dolor sit amet salami venison chicken flank fatback doner."
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("175")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("Mike Doe")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("11-7-2014")]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("span", { staticClass: "label label-danger" }, [
-                        _vm._v("Denied")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(
-                        "Bacon ipsum dolor sit amet salami venison chicken flank fatback doner."
-                      )
                     ])
                   ])
                 ])
