@@ -1,18 +1,13 @@
-
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
+<div class="card card-primary card-outline">
+    <div class="card-body">
+        <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Dashboard Component</div>
-
-                    <div class="card-body">
-                        Estas en el Dashboard
-                    </div>
-                </div>
+                <h1>AQUI CONTENIDO</h1>
             </div>
-        </div>
+         </div>
     </div>
+</div>
 </template>
 
 <script>

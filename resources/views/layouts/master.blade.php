@@ -26,12 +26,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars verdeviva"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      <li class="nav-item d-none d-sm-inline-block ">
         {{-- <a href="index3.html" class="nav-link">Home</a> --}}
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      <li class="nav-item d-none d-sm-inline-block verdeviva">
         {{-- <a href="#" class="nav-link">Contact</a> --}}
       </li>
     </ul>
@@ -42,7 +42,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <input class="form-control form-control-navbar" type="search" placeholder="Buscar .." aria-label="Search">
         <div class="input-group-append">
           <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
+            <i class="fas fa-search verdeviva"></i>
           </button>
         </div>
       </div>
@@ -173,7 +173,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
            <li class="nav-item">
             <router-link to="/dashboard" class="nav-link ">
               
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-tachometer-alt "></i>
               <p>
                Dasboard
                 {{-- <span class="right badge badge-danger">Nuevo</span> --}}
@@ -184,10 +184,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item has-treeview">
           
             <a href="#"  class="nav-link ">
-              <i class="nav-icon fas fa-cog"></i>
+              <i class="nav-icon fas fa-cog "></i>
               <p>
                 Administracion
-                <i class="right fas fa-angle-left"></i>
+                <i class="right fas fa-angle-left "></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -198,16 +198,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li> --}}
               <li class="nav-item">
-                <a href="#" class="nav-link ">
+                <router-link to="/users" class="nav-link ">
                   <i class="far fa-circle fa fa-users"></i>
                   <p>Usuarios</p>
-                </a>
+                </router-link>
               </li>
             </ul>
           </li>
           <li class="nav-item">
             <router-link to="/profile" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon fas fa-user "></i>
               <p>
                 Perfil
                 {{-- <span class="right badge badge-danger">Nuevo</span> --}}
@@ -218,7 +218,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <a class="nav-link" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
-                      <i class="nav-icon fas fa-power-off"></i>
+                      <i class="nav-icon fas fa-power-off rojo"></i>
                       <p>
                             {{ __('Logout') }}
                       </p>                  

@@ -20,3 +20,23 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+    //  #99CF16; verde viva
+    // #8778B2;  morado viva
+// COLORES CORPORATIVOS A UTILIZAR
+$verdeviva:#99CF16;
+$moradoviva:#8778B2;
+
+
+// CLAVES PERSONALIZADAS
+.moradoviva{
+    color: $moradoviva;
+}
+
+.verdeviva{
+    color: $verdeviva;
+}
+
+.rojo{
+    color: $red;
+}
