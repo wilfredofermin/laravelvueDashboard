@@ -37485,7 +37485,7 @@ var staticRenderFns = [
               _c(
                 "div",
                 {
-                  staticClass: "modal-dialog modal-dialog-centered",
+                  staticClass: "modal-dialog modal-dialog-centered modal-lg",
                   attrs: { role: "document" }
                 },
                 [
@@ -37497,7 +37497,7 @@ var staticRenderFns = [
                           staticClass: "modal-title",
                           attrs: { id: "addnewLabel" }
                         },
-                        [_vm._v("Nuevo Usuario")]
+                        [_vm._v("NUEVO USUARIO")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37529,7 +37529,10 @@ var staticRenderFns = [
                           staticClass: "btn btn-danger",
                           attrs: { type: "button", "data-dismiss": "modal" }
                         },
-                        [_vm._v("Cerrar")]
+                        [
+                          _c("i", { staticClass: "fas fa-times" }),
+                          _vm._v(" Cerrar")
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -37538,7 +37541,10 @@ var staticRenderFns = [
                           staticClass: "btn btn-primary",
                           attrs: { type: "button" }
                         },
-                        [_vm._v("Guardar")]
+                        [
+                          _c("i", { staticClass: "fas fa-plus" }),
+                          _vm._v(" Agregar")
+                        ]
                       )
                     ])
                   ])
