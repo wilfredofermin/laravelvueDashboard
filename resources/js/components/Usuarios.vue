@@ -9,7 +9,7 @@
                             <h4>USUARIOS</h4>
                         </div>
                         <div class="card-tools">
-                            <button type="button" class="btn btn-block btn-primary btn-md" data-toggle="modal" data-target="#addnew"><i class="fas fa-user-plus ta-fw"></i></button>
+                            <button type="button" class="btn btn-block btn-primary btn-md" data-toggle="modal" data-target="#addnew"><i class="fas fa-user-plus ta-fw"></i> Agregar</button>
                         </div>
                     </div>
                      <div class="box-body table-responsive no-padding">
@@ -45,6 +45,7 @@
          </div>
     </div>
             <!-- Modal -->
+        <form @submit.prevent="CrearUsuario" @keydown="form.onKeydown($event)">
             <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="addnewLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered cl" role="document">
                 <div class="modal-content">
@@ -54,8 +55,8 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                  <!-- Contenido del modal -->
+                         
+                <div class="modal-body">     
                   <div class="form-group">
                     <input v-model="form.nombre" type="text" name="nombre" placeholder="Nombre"
                         class="form-control" :class="{ 'is-invalid': form.errors.has('nombre') }">
@@ -80,7 +81,7 @@
          
                    <div class="form-group">
                     <select name="tipo" v-model="form.tipo" id="tipo" class="form-control" :class="{ 'is-invalid':form.errors.has('tipo')}">
-                        <option value="">Seleccione un rol</option>
+                        <option value="" selected disabled hidden>Indique un rol</option>
                         <option value="user">Usuario Estandar</option>
                         <option value="admin">Administrador</option>
                         <option value="gestion">Gestion</option>
@@ -96,12 +97,13 @@
                   <!-- Fin contenido -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-                    <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary"> Agregar</button>
                 </div>
                 </div>
             </div>
-            </div>
+            </div> 
+        </form>
              <!-- fin modal -->
         </div>           
      </div>    
@@ -128,9 +130,9 @@
         }
     },
     methods: {
-        login() {
+        CrearUsuario() {
             // Submit the form via a POST request
-            this.form.post('/login')
+            this.form.post('/api/user')
                 .then(({ data }) => { console.log(data) })
         }
     },
