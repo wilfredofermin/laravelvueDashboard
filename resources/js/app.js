@@ -3,7 +3,15 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+window.Form = Form;
+
 // import Dashboard from './components/Dashboard.vue';
+
+import { Form, HasError, AlertError } from 'vform' ;
+
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+
 
 
 import VueRouter from 'vue-router'

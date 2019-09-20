@@ -19,6 +19,7 @@ class UsersTableSeeder extends Seeder
             'nombre'     => $faker->firstName,
             'apellidos'  => $faker->LastName,
             'email'      => $faker->unique()->email,
+            // 'bio'      => $faker->sentences($nb = 3, $asText = false),
             'tipo'  => 'user',
             'password'   =>\Hash::make('Viva12345')
         ]);
