@@ -68,7 +68,7 @@
                     <has-error :form="form" field="apellidos"></has-error>
                   </div>
                    <div class="form-group">
-                    <input v-model="form.email" type="email" name="email" placeholder="Correo electronico"
+                    <input v-model="form.email" type="text" name="email" placeholder="Correo electronico"
                         class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
                     <has-error :form="form" field="email"></has-error>
                   </div>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary"> Agregar</button>
+                    <button type="submit" class="btn btn-primary"> Agregar</button>
                 </div>
                 </div>
             </div>
@@ -132,8 +132,8 @@
     methods: {
         CrearUsuario() {
             // Submit the form via a POST request
-            this.form.post('/api/user')
-                .then(({ data }) => { console.log(data) })
+            this.form.post('/api/user');
+                // .then(({ data }) => { console.log(data) })
         }
     },
         mounted() {

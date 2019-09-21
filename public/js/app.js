@@ -2048,10 +2048,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     CrearUsuario: function CrearUsuario() {
       // Submit the form via a POST request
-      this.form.post('/api/user').then(function (_ref) {
-        var data = _ref.data;
-        console.log(data);
-      });
+      this.form.post('/api/user'); // .then(({ data }) => { console.log(data) })
     }
   },
   mounted: function mounted() {
@@ -38612,7 +38609,7 @@ var render = function() {
                                 "is-invalid": _vm.form.errors.has("email")
                               },
                               attrs: {
-                                type: "email",
+                                type: "text",
                                 name: "email",
                                 placeholder: "Correo electronico"
                               },
@@ -38946,7 +38943,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
         [_vm._v(" Agregar")]
       )
     ])
