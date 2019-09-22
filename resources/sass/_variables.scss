@@ -41,15 +41,16 @@ $moradoviva:#8778B2;
     color: $red;
 }
 
+// Mensaje de advertencia paradiante
 .parpadea {
   
   animation-name: parpadeo;
-  animation-duration: 1s;
+  animation-duration: 3s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 
   -webkit-animation-name:parpadeo;
-  -webkit-animation-duration: 1s;
+  -webkit-animation-duration: 3s;
   -webkit-animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;
 }

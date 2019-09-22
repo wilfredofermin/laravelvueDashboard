@@ -2038,6 +2038,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2065,18 +2066,18 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.put('/api/user/' + this.form.id) // 3 - Evaluamos los datos - si esto todo correcto
       .then(function () {
-        // 4 - Recargamos los datos
-        Fire.$emit('RecargarData'); // 5 - Mostramos el progress bar que finalizacion
+        //4- Muestro la notificacion 
+        swal.fire(_this.form.nombre + ' ' + _this.form.apellidos, 'Ha sido <b>actualizado exitosamente !</b> ', 'success'); // 5 - Mostramos el progress bar que finalizacion
 
-        _this.$Progress.finish(); //6 - Cierro la ventana modal
+        _this.$Progress.finish(); // 6 - Recargamos los datos
 
 
-        $('#addnew').modal('hide'); //7- Muestro la notificacion 
+        Fire.$emit('RecargarData'); //6 - Cierro la ventana modal
 
-        toast.fire({
-          type: 'success',
-          title: 'Usuario actualizado exitosamente'
-        });
+        $('#addnew').modal('hide'); // toast.fire({
+        // type: 'success',
+        // title: 'Usuario actualizado exitosamente'
+        // });     
       }) // Si se produce algun error
       ["catch"](function () {
         // Muestro una progress bar de error
@@ -2102,7 +2103,7 @@ __webpack_require__.r(__webpack_exports__);
         title: 'Estas seguro?',
         html: 'El usuario  ' + nombre + ' ' + apellidos + ' ' + 'sera eliminado',
         type: 'warning',
-        footer: '<span class="label label-danger parpadea">  Una vez eliminado no podrás revertirlo!  </span>',
+        footer: '<button type="button" class="btn btn-block btn-danger btn-flat parpadea ">Una vez eliminado no podrás revertirlo !</button>',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -2111,7 +2112,7 @@ __webpack_require__.r(__webpack_exports__);
         if (result.value) {
           //Envio el request al servidor - backend
           _this2.form["delete"]('/api/user/' + id).then(function () {
-            swal.fire('Eliminado !', 'El usuario  ' + nombre + ' ' + apellidos + ' ' + 'ha sido removido', 'success');
+            swal.fire(nombre + ' ' + apellidos, 'Ha sido <b>removido del sistema</b>', 'success');
             Fire.$emit('RecargarData');
           });
         }
@@ -59144,7 +59145,43 @@ var render = function() {
                           _vm._v(_vm._s(_vm._f("capitalize")(user.apellidos)))
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(user.status))]),
+                        _c(
+                          "td",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: user.activo,
+                                expression: "user.activo"
+                              }
+                            ]
+                          },
+                          [
+                            _c("span", { staticClass: "label label-success" }, [
+                              _vm._v(" Activo ")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: !user.activo,
+                                expression: "!user.activo"
+                              }
+                            ]
+                          },
+                          [
+                            _c("span", { staticClass: "label label-danger" }, [
+                              _vm._v(" Desactivo ")
+                            ])
+                          ]
+                        ),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(_vm._s(_vm._f("capitalize")(user.tipo)))

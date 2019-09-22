@@ -28,7 +28,8 @@
                             <tr v-for="user in users" :key="user.id">
                             <td>{{user.nombre | capitalize }}</td>
                             <td>{{user.apellidos | capitalize}}</td>
-                            <td>{{user.status}}</td>
+                            <td v-show="user.activo"><span class="label label-success"> Activo </span></td>
+                            <td v-show="!user.activo"><span class="label label-danger"> Desactivo </span></td>
                             <td>{{user.tipo | capitalize }}</td>
                             <td>{{user.email}}</td>
                             <td>{{user.created_at | fechas }}</td>
@@ -150,18 +151,25 @@
             this.form.put('/api/user/' + this.form.id )
             // 3 - Evaluamos los datos - si esto todo correcto
             .then(()=>{
-                // 4 - Recargamos los datos
-                Fire.$emit('RecargarData');
-                // 5 - Mostramos el progress bar que finalizacion
-                 this.$Progress.finish();
-                //6 - Cierro la ventana modal
-                $('#addnew').modal('hide');
-
-                //7- Muestro la notificacion 
-                toast.fire({
-                        type: 'success',
-                        title: 'Usuario actualizado exitosamente'
-                        });     
+                //4- Muestro la notificacion 
+                   swal.fire(
+                            this.form.nombre +' '+ this.form.apellidos ,
+                            'Ha sido <b>actualizado exitosamente !</b> ',
+                            'success'
+                            )
+                            // 5 - Mostramos el progress bar que finalizacion
+                            this.$Progress.finish();
+                           
+                              // 6 - Recargamos los datos
+                            Fire.$emit('RecargarData');
+                            
+                            
+                            //6 - Cierro la ventana modal
+                             $('#addnew').modal('hide');
+                            // toast.fire({
+                            // type: 'success',
+                            // title: 'Usuario actualizado exitosamente'
+                            // });     
             })
             // Si se produce algun error
             .catch(()=>{
@@ -189,7 +197,7 @@
                 title: 'Estas seguro?',
                 html: 'El usuario  '+nombre+' '+ apellidos +' '+'sera eliminado',
                 type: 'warning',
-                footer: '<span class="label label-danger parpadea">  Una vez eliminado no podrás revertirlo!  </span>',
+                footer: '<button type="button" class="btn btn-block btn-danger btn-flat parpadea ">Una vez eliminado no podrás revertirlo !</button>',
                 showCancelButton: true, 
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
@@ -199,8 +207,8 @@
                         //Envio el request al servidor - backend
                         this.form.delete('/api/user/' + id).then(()=>{
                             swal.fire(
-                            'Eliminado !',
-                            'El usuario  '+nombre +' '+ apellidos +' '+'ha sido removido',
+                            nombre +' '+ apellidos,
+                            'Ha sido <b>removido del sistema</b>',
                             'success'
                             )
                             Fire.$emit('RecargarData');

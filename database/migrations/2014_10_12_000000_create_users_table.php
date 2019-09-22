@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('nombre');
             $table->string('apellidos');
             $table->string('foto')->default('profile.jpg');
-            $table->enum('tipo',['admin','user'])->default('user');
+            $table->enum('tipo',['admin','user','gestion'])->default('user');
             $table->mediumText('bio')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
