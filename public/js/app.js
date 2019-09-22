@@ -2052,22 +2052,23 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    EliminarUsuario: function EliminarUsuario(id) {
+    EliminarUsuario: function EliminarUsuario(id, nombre, apellidos) {
       var _this = this;
 
       swal.fire({
         title: 'Estas seguro?',
-        text: "No podrás revertir esto!",
+        html: 'El usuario  ' + nombre + ' ' + apellidos + ' ' + 'sera eliminado',
         type: 'warning',
+        footer: '<span class="label label-danger parpadea">  Una vez eliminado no podrás revertirlo!  </span>',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, Eliminalo!'
+        confirmButtonText: 'Si, eliminalo!'
       }).then(function (result) {
         if (result.value) {
           //Envio el request al servidor - backend
           _this.form["delete"]('/api/user/' + id).then(function () {
-            swal.fire('Eliminado !', 'El usuario ha sido removido', 'success');
+            swal.fire('Eliminado !', 'El usuario  ' + nombre + ' ' + apellidos + ' ' + 'ha sido removido', 'success');
             Fire.$emit('RecargarData');
           });
         }
@@ -59106,7 +59107,11 @@ var render = function() {
                               attrs: { href: "#" },
                               on: {
                                 click: function($event) {
-                                  return _vm.EliminarUsuario(user.id)
+                                  return _vm.EliminarUsuario(
+                                    user.id,
+                                    user.nombre,
+                                    user.apellidos
+                                  )
                                 }
                               }
                             },

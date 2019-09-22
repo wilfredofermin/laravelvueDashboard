@@ -40,7 +40,7 @@
                                      <i class="fas fa-edit green"></i>
                                </a>
                                |
-                               <a href="#" @click="EliminarUsuario(user.id)" >
+                               <a href="#" @click="EliminarUsuario(user.id,user.nombre,user.apellidos)" >
                                      <i class="fas fa-trash rojo"></i>
                                </a>
                             </td>
@@ -136,22 +136,23 @@
         }
     },
     methods: {
-         EliminarUsuario(id){
+         EliminarUsuario(id, nombre, apellidos){
             swal.fire({
                 title: 'Estas seguro?',
-                text: "No podrás revertir esto!",
+                html: 'El usuario  '+nombre+' '+ apellidos +' '+'sera eliminado',
                 type: 'warning',
-                showCancelButton: true,
+                footer: '<span class="label label-danger parpadea">  Una vez eliminado no podrás revertirlo!  </span>',
+                showCancelButton: true, 
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, Eliminalo!'
+                confirmButtonText: 'Si, eliminalo!'
                 }).then((result) => {
                         if (result.value) {
                         //Envio el request al servidor - backend
                         this.form.delete('/api/user/' + id).then(()=>{
                             swal.fire(
                             'Eliminado !',
-                            'El usuario ha sido removido' ,
+                            'El usuario  '+nombre +' '+ apellidos +' '+'ha sido removido',
                             'success'
                             )
                             Fire.$emit('RecargarData');
