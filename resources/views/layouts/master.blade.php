@@ -246,6 +246,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <br>  
            {{-- -----------------------CONTENIDO DINAMICO AQUI---------------------------- --}}
           <router-view></router-view>
+          <vue-progress-bar></vue-progress-bar>
           {{-- --------------------------------------------------------------------------- --}}
        <!-- /.col-md-6 -->
         </div>

@@ -16,19 +16,23 @@
                     <table class="table table-hover">
                         <tbody>
                             <tr>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Status</th>
-                            <th>Tipo</th>
-                            <th>Email</th>
-                            <th>Modificar</th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Status</th>
+                                <th>Tipo</th>
+                                <th>Email</th>
+                                <th>Creado</th>
+                                <th>Modificar</th>
                             </tr>
-                            <tr>
-                            <td>183</td>
-                            <td>John Doe</td>
-                            <td>11-7-2014</td>
-                            <td><span class="label label-success">Approved</span></td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                            <tr v-for="user in users" :key="user.id">
+                            <td>{{user.nombre | capitalize }}</td>
+                            <td>{{user.apellidos | capitalize}}</td>
+                            <td>{{user.status}}</td>
+                            <td>{{user.tipo | capitalize }}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.created_at | fechas }}</td>
+                            <!-- <td><span class="label label-success">Approved</span></td>
+                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td> -->
                             <td>
                                <a href="#">
                                      <i class="fas fa-edit green"></i>
@@ -116,28 +120,33 @@
     export default {
          data() {
         return {
-            // Create a new form instance
-            form: new Form({
-                activo: '',
-                nombre: '',
-                apellidos: '',
-                foto: '',
-                tipo: '',
-                email: '',
+                users : {},
+            form : new Form({
+                activo : '',
+                nombre : '',
+                apellidos : '',
+                foto : '',
+                tipo : '',
+                email : '',
                 
                 remember: false
             })
         }
     },
     methods: {
+        CargarUsuarios(){
+            
+            axios.get('api/user').then(( { data } ) => (this.users = data.data));
+        },
         CrearUsuario() {
             // Submit the form via a POST request
+            this.$Progress.start();
             this.form.post('/api/user');
-                // .then(({ data }) => { console.log(data) })
+            this.$Progress.finish();  
         }
     },
-        mounted() {
-            console.log('Component mounted.')
+        created() {
+            this.CargarUsuarios();
         }
     }
 </script>
