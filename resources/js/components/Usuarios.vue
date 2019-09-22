@@ -141,12 +141,15 @@
             axios.get('api/user').then(( { data } ) => (this.users = data.data));
         },
         CrearUsuario() {
-            // Submit the form via a POST request
+          
+            this.form.post('/api/user')
+            //DE TODO ESTAR CORRECTO
+            .then(()=>{
+                  // Submit the form via a POST request
             // 1- Cargo el progress bar
             this.$Progress.start();
             // 2- Hago la peticion de la data
-            this.form.post('/api/user');
-            //3- Recargo los datos
+             //3- Recargo los datos
             Fire.$emit('RecargarData');
              //4- Cierro la ventana modal
              $('#addnew').modal('hide');
@@ -156,7 +159,15 @@
             toast.fire({
                     type: 'success',
                     title: 'Usuario creado exitosamente'
-                    });       
+                    });     
+
+            }) 
+            //DE LO CONTRARIO
+            .catch(()=>{
+                
+                   this.$Progress.fail() 
+            })
+             
            
         }
     },
@@ -166,7 +177,8 @@
             // RECARGAR DATA 
             
             // Opcion A
-            // Aqui invoco la recarga
+            // Referencia : https://vuejs.org/v2/guide/components-custom-events.html
+            // Metodo de recarga con Vue - video referencia : https://www.youtube.com/watch?v=DHuTkJzH2jI&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=21
             Fire.$on('RecargarData',()=> {
                 this.CargarUsuarios();
             });

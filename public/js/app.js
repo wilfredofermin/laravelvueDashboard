@@ -2061,33 +2061,43 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     CrearUsuario: function CrearUsuario() {
-      // Submit the form via a POST request
-      // 1- Cargo el progress bar
-      this.$Progress.start(); // 2- Hago la peticion de la data
+      var _this2 = this;
 
-      this.form.post('/api/user'); //3- Recargo los datos
+      this.form.post('/api/user') //DE TODO ESTAR CORRECTO
+      .then(function () {
+        // Submit the form via a POST request
+        // 1- Cargo el progress bar
+        _this2.$Progress.start(); // 2- Hago la peticion de la data
+        //3- Recargo los datos
 
-      Fire.$emit('RecargarData'); //4- Cierro la ventana modal
 
-      $('#addnew').modal('hide'); //5- Cargo la barra como finalizado por proceso       
+        Fire.$emit('RecargarData'); //4- Cierro la ventana modal
 
-      this.$Progress.finish(); //6- Hago la notificacion 
+        $('#addnew').modal('hide'); //5- Cargo la barra como finalizado por proceso       
 
-      toast.fire({
-        type: 'success',
-        title: 'Usuario creado exitosamente'
+        _this2.$Progress.finish(); //6- Hago la notificacion 
+
+
+        toast.fire({
+          type: 'success',
+          title: 'Usuario creado exitosamente'
+        });
+      }) //DE LO CONTRARIO
+      ["catch"](function () {
+        _this2.$Progress.fail();
       });
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     this.CargarUsuarios(); // RECARGAR DATA 
     // Opcion A
-    // Aqui invoco la recarga
+    // Referencia : https://vuejs.org/v2/guide/components-custom-events.html
+    // Metodo de recarga con Vue - video referencia : https://www.youtube.com/watch?v=DHuTkJzH2jI&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=21
 
     Fire.$on('RecargarData', function () {
-      _this2.CargarUsuarios();
+      _this3.CargarUsuarios();
     }); // Opcion B
     //Actualizar datos cada 3 segundos video referencia : https://www.youtube.com/watch?v=AqO_afAc1kQ&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=20
     // setInterval(() => this.CargarUsuarios() , 3000);
