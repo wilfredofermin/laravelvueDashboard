@@ -2045,6 +2045,7 @@ __webpack_require__.r(__webpack_exports__);
       editmode: false,
       users: {},
       form: new Form({
+        id: '',
         activo: '',
         nombre: '',
         apellidos: '',
@@ -2057,7 +2058,30 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     ActualizarUsuario: function ActualizarUsuario() {
-      console.log('Mostrar Mensaje');
+      var _this = this;
+
+      // 1 - Cargo el progress bar
+      this.$Progress.start(); // 2 - Enviamos la peticion al servidor
+
+      this.form.put('/api/user/' + this.form.id) // 3 - Evaluamos los datos - si esto todo correcto
+      .then(function () {
+        // 4 - Recargamos los datos
+        Fire.$emit('RecargarData'); // 5 - Mostramos el progress bar que finalizacion
+
+        _this.$Progress.finish(); //6 - Cierro la ventana modal
+
+
+        $('#addnew').modal('hide'); //7- Muestro la notificacion 
+
+        toast.fire({
+          type: 'success',
+          title: 'Usuario actualizado exitosamente'
+        });
+      }) // Si se produce algun error
+      ["catch"](function () {
+        // Muestro una progress bar de error
+        _this.$Progress.fail();
+      });
     },
     EditarModal: function EditarModal(user) {
       this.editmode = true;
@@ -2072,7 +2096,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.nombre.focus();
     },
     EliminarUsuario: function EliminarUsuario(id, nombre, apellidos) {
-      var _this = this;
+      var _this2 = this;
 
       swal.fire({
         title: 'Estas seguro?',
@@ -2086,7 +2110,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //Envio el request al servidor - backend
-          _this.form["delete"]('/api/user/' + id).then(function () {
+          _this2.form["delete"]('/api/user/' + id).then(function () {
             swal.fire('Eliminado !', 'El usuario  ' + nombre + ' ' + apellidos + ' ' + 'ha sido removido', 'success');
             Fire.$emit('RecargarData');
           });
@@ -2094,21 +2118,21 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     CargarUsuarios: function CargarUsuarios() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('api/user').then(function (_ref) {
         var data = _ref.data;
-        return _this2.users = data.data;
+        return _this3.users = data.data;
       });
     },
     CrearUsuario: function CrearUsuario() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.form.post('/api/user') //DE TODO ESTAR CORRECTO ----> video tutorail : https://www.youtube.com/watch?v=97JFc7g_0wE&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=22
       .then(function () {
         // Submit the form via a POST request
         // 1- Cargo el progress bar
-        _this3.$Progress.start(); // 2- Hago la peticion de la data
+        _this4.$Progress.start(); // 2- Hago la peticion de la data
         //3- Recargo los datos
 
 
@@ -2116,7 +2140,7 @@ __webpack_require__.r(__webpack_exports__);
 
         $('#addnew').modal('hide'); //5- Cargo la barra como finalizado por proceso       
 
-        _this3.$Progress.finish(); //6- Hago la notificacion 
+        _this4.$Progress.finish(); //6- Hago la notificacion 
 
 
         toast.fire({
@@ -2125,12 +2149,12 @@ __webpack_require__.r(__webpack_exports__);
         });
       }) //DE LO CONTRARIO
       ["catch"](function () {
-        _this3.$Progress.fail();
+        _this4.$Progress.fail();
       });
     }
   },
   created: function created() {
-    var _this4 = this;
+    var _this5 = this;
 
     this.CargarUsuarios(); // RECARGAR DATA 
     // Opcion A
@@ -2138,7 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
     // Metodo de recarga con Vue - video referencia : https://www.youtube.com/watch?v=DHuTkJzH2jI&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=21
 
     Fire.$on('RecargarData', function () {
-      _this4.CargarUsuarios();
+      _this5.CargarUsuarios();
     }); // Opcion B
     //Actualizar datos cada 3 segundos video referencia : https://www.youtube.com/watch?v=AqO_afAc1kQ&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=20
     // setInterval(() => this.CargarUsuarios() , 3000);

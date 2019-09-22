@@ -69,8 +69,19 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
+
     {
-        //
+            $this->validate($request, [
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            // 'email' => 'email|required|min:13|unique:users',
+            // 'password' => 'required|min:8',
+             ]);
+
+         $user = User::findOrFail($id);
+                $user->update($request->all());
+
+                return ['messege' => 'Usuario actualizado !'];
     }
 
     /**

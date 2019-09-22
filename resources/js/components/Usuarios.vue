@@ -130,6 +130,7 @@
                  editmode : false,
                 users : {},
             form : new Form({
+                id : '',
                 activo : '',
                 nombre : '',
                 apellidos : '',
@@ -143,7 +144,30 @@
     },
     methods: {
             ActualizarUsuario(){
-               console.log('Mostrar Mensaje');
+            // 1 - Cargo el progress bar
+            this.$Progress.start();
+            // 2 - Enviamos la peticion al servidor
+            this.form.put('/api/user/' + this.form.id )
+            // 3 - Evaluamos los datos - si esto todo correcto
+            .then(()=>{
+                // 4 - Recargamos los datos
+                Fire.$emit('RecargarData');
+                // 5 - Mostramos el progress bar que finalizacion
+                 this.$Progress.finish();
+                //6 - Cierro la ventana modal
+                $('#addnew').modal('hide');
+
+                //7- Muestro la notificacion 
+                toast.fire({
+                        type: 'success',
+                        title: 'Usuario actualizado exitosamente'
+                        });     
+            })
+            // Si se produce algun error
+            .catch(()=>{
+                // Muestro una progress bar de error
+                 this.$Progress.fail();
+            })
 
             },
 
