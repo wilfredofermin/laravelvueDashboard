@@ -69,10 +69,13 @@ Vue.filter('mayusculas', function (text) {
 import moment from 'moment'
 Vue.filter('fechas', function (created) {
     if (!created) return ''
-    return moment(created).format("MMM Do YY");  
+    return moment(created).format("lll"); 
 })
 
 // FIN DE FORMATEO //////////////////////////////////////////////////////
+
+// RECARGAR DATOS -> Ref : https://vuejs.org/v2/guide/components-custom-events.html
+window.Fire = new Vue();
 
 const app = new Vue({
     el: '#app',

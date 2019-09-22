@@ -2034,6 +2034,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2063,11 +2065,13 @@ __webpack_require__.r(__webpack_exports__);
       // 1- Cargo el progress bar
       this.$Progress.start(); // 2- Hago la peticion de la data
 
-      this.form.post('/api/user'); // 3- Cierro la ventana modal
+      this.form.post('/api/user'); //3- Recargo los datos
 
-      $('#addnew').modal('hide'); // 4- Cargo la barra como finalizado por proceso       
+      Fire.$emit('RecargarData'); //4- Cierro la ventana modal
 
-      this.$Progress.finish(); // 5- Hago la notificacion 
+      $('#addnew').modal('hide'); //5- Cargo la barra como finalizado por proceso       
+
+      this.$Progress.finish(); //6- Hago la notificacion 
 
       toast.fire({
         type: 'success',
@@ -2076,7 +2080,17 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.CargarUsuarios();
+    var _this2 = this;
+
+    this.CargarUsuarios(); // RECARGAR DATA 
+    // Opcion A
+    // Aqui invoco la recarga
+
+    Fire.$on('RecargarData', function () {
+      _this2.CargarUsuarios();
+    }); // Opcion B
+    //Actualizar datos cada 3 segundos video referencia : https://www.youtube.com/watch?v=AqO_afAc1kQ&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=20
+    // setInterval(() => this.CargarUsuarios() , 3000);
   }
 });
 
@@ -59046,6 +59060,10 @@ var render = function() {
                           _vm._v(_vm._s(_vm._f("fechas")(user.created_at)))
                         ]),
                         _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(_vm._f("fechas")(user.updated_at)))
+                        ]),
+                        _vm._v(" "),
                         _vm._m(2, true)
                       ])
                     })
@@ -59455,7 +59473,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Email")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Creado")]),
+      _c("th", [_vm._v("Creacion")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Modificado ")]),
       _vm._v(" "),
       _c("th", [_vm._v("Modificar")])
     ])
@@ -74652,9 +74672,11 @@ Vue.filter('mayusculas', function (text) {
 
 Vue.filter('fechas', function (created) {
   if (!created) return '';
-  return moment__WEBPACK_IMPORTED_MODULE_4___default()(created).format("MMM Do YY");
+  return moment__WEBPACK_IMPORTED_MODULE_4___default()(created).format("lll");
 }); // FIN DE FORMATEO //////////////////////////////////////////////////////
+// RECARGAR DATOS -> Ref : https://vuejs.org/v2/guide/components-custom-events.html
 
+window.Fire = new Vue();
 var app = new Vue({
   el: '#app',
   router: router

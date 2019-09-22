@@ -21,7 +21,8 @@
                                 <th>Status</th>
                                 <th>Tipo</th>
                                 <th>Email</th>
-                                <th>Creado</th>
+                                <th>Creacion</th>
+                                <th>Modificado </th>
                                 <th>Modificar</th>
                             </tr>
                             <tr v-for="user in users" :key="user.id">
@@ -31,6 +32,7 @@
                             <td>{{user.tipo | capitalize }}</td>
                             <td>{{user.email}}</td>
                             <td>{{user.created_at | fechas }}</td>
+                            <td>{{user.updated_at | fechas }}</td>
                             <!-- <td><span class="label label-success">Approved</span></td>
                             <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td> -->
                             <td>
@@ -144,11 +146,13 @@
             this.$Progress.start();
             // 2- Hago la peticion de la data
             this.form.post('/api/user');
-            // 3- Cierro la ventana modal
+            //3- Recargo los datos
+            Fire.$emit('RecargarData');
+             //4- Cierro la ventana modal
              $('#addnew').modal('hide');
-             // 4- Cargo la barra como finalizado por proceso       
+             //5- Cargo la barra como finalizado por proceso       
             this.$Progress.finish();
-            // 5- Hago la notificacion 
+            //6- Hago la notificacion 
             toast.fire({
                     type: 'success',
                     title: 'Usuario creado exitosamente'
@@ -158,6 +162,18 @@
     },
         created() {
             this.CargarUsuarios();
+
+            // RECARGAR DATA 
+            
+            // Opcion A
+            // Aqui invoco la recarga
+            Fire.$on('RecargarData',()=> {
+                this.CargarUsuarios();
+            });
+
+            // Opcion B
+            //Actualizar datos cada 3 segundos video referencia : https://www.youtube.com/watch?v=AqO_afAc1kQ&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=20
+            // setInterval(() => this.CargarUsuarios() , 3000);
         }
     }
 </script>
