@@ -2052,22 +2052,43 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    CargarUsuarios: function CargarUsuarios() {
+    EliminarUsuario: function EliminarUsuario(id) {
       var _this = this;
+
+      swal.fire({
+        title: 'Estas seguro?',
+        text: "No podrás revertir esto!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Eliminalo!'
+      }).then(function (result) {
+        if (result.value) {
+          //Envio el request al servidor - backend
+          _this.form["delete"]('/api/user/' + id).then(function () {
+            swal.fire('Eliminado !', 'El usuario ha sido removido', 'success');
+            Fire.$emit('RecargarData');
+          });
+        }
+      });
+    },
+    CargarUsuarios: function CargarUsuarios() {
+      var _this2 = this;
 
       axios.get('api/user').then(function (_ref) {
         var data = _ref.data;
-        return _this.users = data.data;
+        return _this2.users = data.data;
       });
     },
     CrearUsuario: function CrearUsuario() {
-      var _this2 = this;
+      var _this3 = this;
 
-      this.form.post('/api/user') //DE TODO ESTAR CORRECTO
+      this.form.post('/api/user') //DE TODO ESTAR CORRECTO ----> video tutorail : https://www.youtube.com/watch?v=97JFc7g_0wE&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=22
       .then(function () {
         // Submit the form via a POST request
         // 1- Cargo el progress bar
-        _this2.$Progress.start(); // 2- Hago la peticion de la data
+        _this3.$Progress.start(); // 2- Hago la peticion de la data
         //3- Recargo los datos
 
 
@@ -2075,7 +2096,7 @@ __webpack_require__.r(__webpack_exports__);
 
         $('#addnew').modal('hide'); //5- Cargo la barra como finalizado por proceso       
 
-        _this2.$Progress.finish(); //6- Hago la notificacion 
+        _this3.$Progress.finish(); //6- Hago la notificacion 
 
 
         toast.fire({
@@ -2084,12 +2105,12 @@ __webpack_require__.r(__webpack_exports__);
         });
       }) //DE LO CONTRARIO
       ["catch"](function () {
-        _this2.$Progress.fail();
+        _this3.$Progress.fail();
       });
     }
   },
   created: function created() {
-    var _this3 = this;
+    var _this4 = this;
 
     this.CargarUsuarios(); // RECARGAR DATA 
     // Opcion A
@@ -2097,7 +2118,7 @@ __webpack_require__.r(__webpack_exports__);
     // Metodo de recarga con Vue - video referencia : https://www.youtube.com/watch?v=DHuTkJzH2jI&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=21
 
     Fire.$on('RecargarData', function () {
-      _this3.CargarUsuarios();
+      _this4.CargarUsuarios();
     }); // Opcion B
     //Actualizar datos cada 3 segundos video referencia : https://www.youtube.com/watch?v=AqO_afAc1kQ&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=20
     // setInterval(() => this.CargarUsuarios() , 3000);
@@ -59074,7 +59095,24 @@ var render = function() {
                           _vm._v(_vm._s(_vm._f("fechas")(user.updated_at)))
                         ]),
                         _vm._v(" "),
-                        _vm._m(2, true)
+                        _c("td", [
+                          _vm._m(2, true),
+                          _vm._v(
+                            "\r\n                               |\r\n                               "
+                          ),
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.EliminarUsuario(user.id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-trash rojo" })]
+                          )
+                        ])
                       ])
                     })
                   ],
@@ -59494,16 +59532,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fas fa-edit green" })
-      ]),
-      _vm._v(
-        "\r\n                               |\r\n                               "
-      ),
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fas fa-trash rojo" })
-      ])
+    return _c("a", { attrs: { href: "#" } }, [
+      _c("i", { staticClass: "fas fa-edit green" })
     ])
   },
   function() {

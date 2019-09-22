@@ -40,7 +40,7 @@
                                      <i class="fas fa-edit green"></i>
                                </a>
                                |
-                               <a href="#">
+                               <a href="#" @click="EliminarUsuario(user.id)" >
                                      <i class="fas fa-trash rojo"></i>
                                </a>
                             </td>
@@ -136,6 +136,30 @@
         }
     },
     methods: {
+         EliminarUsuario(id){
+            swal.fire({
+                title: 'Estas seguro?',
+                text: "No podrás revertir esto!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, Eliminalo!'
+                }).then((result) => {
+                        if (result.value) {
+                        //Envio el request al servidor - backend
+                        this.form.delete('/api/user/' + id).then(()=>{
+                            swal.fire(
+                            'Eliminado !',
+                            'El usuario ha sido removido' ,
+                            'success'
+                            )
+                            Fire.$emit('RecargarData');
+                        })
+                     }     
+                });
+         },   
+
         CargarUsuarios(){
             
             axios.get('api/user').then(( { data } ) => (this.users = data.data));
@@ -143,7 +167,7 @@
         CrearUsuario() {
           
             this.form.post('/api/user')
-            //DE TODO ESTAR CORRECTO
+            //DE TODO ESTAR CORRECTO ----> video tutorail : https://www.youtube.com/watch?v=97JFc7g_0wE&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=22
             .then(()=>{
                   // Submit the form via a POST request
             // 1- Cargo el progress bar
@@ -164,7 +188,7 @@
             }) 
             //DE LO CONTRARIO
             .catch(()=>{
-                
+
                    this.$Progress.fail() 
             })
              
