@@ -51,12 +51,13 @@
          </div>
     </div>
             <!-- Modal -->
-        <form @submit.prevent="CrearUsuario" @keydown="form.onKeydown($event)">
+        <form @submit.prevent="editmode ? ActualizarUsuario() : CrearUsuario()" @keydown="form.onKeydown($event) ">
             <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="addnew" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered cl" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addnew">NUEVO USUARIO</h5>
+                    <h5 class="modal-title" v-show="!editmode" id ="addnew">NUEVO USUARIO</h5>
+                    <h5 class="modal-title" v-show="editmode" id="addnew">ACTUALIZAR INFO</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -104,7 +105,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary"> Agregar</button>
+                    <button v-show="editmode" type="submit" class="btn btn-success"> Actualizar</button>
+                    <button v-show="!editmode" type="submit" class="btn btn-primary"> Agregar</button>
                 </div>
                 </div>
             </div>
@@ -120,8 +122,12 @@
 <script>
 
     export default {
+         
          data() {
+            
         return {
+                //Modal multiproposito -> Ref : https://www.youtube.com/watch?v=IsKXpM1lwew&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=25
+                 editmode : false,
                 users : {},
             form : new Form({
                 activo : '',
@@ -136,12 +142,20 @@
         }
     },
     methods: {
+            ActualizarUsuario(){
+               console.log('Mostrar Mensaje');
+
+            },
+
             EditarModal(user){
+                this.editmode = true;
                 this.form.reset();
                 $('#addnew').modal('show'); 
                 this.form.fill(user);
             },
+
             MostrarModal:function(){
+                this.editmode = false;
                  this.form.reset();
                 $('#addnew').modal('show');  
                 this.$refs.nombre.focus();  

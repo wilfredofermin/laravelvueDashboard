@@ -2036,9 +2036,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      //Modal multiproposito -> Ref : https://www.youtube.com/watch?v=IsKXpM1lwew&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=25
+      editmode: false,
       users: {},
       form: new Form({
         activo: '',
@@ -2052,12 +2056,17 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    ActualizarUsuario: function ActualizarUsuario() {
+      console.log('Mostrar Mensaje');
+    },
     EditarModal: function EditarModal(user) {
+      this.editmode = true;
       this.form.reset();
       $('#addnew').modal('show');
       this.form.fill(user);
     },
     MostrarModal: function MostrarModal() {
+      this.editmode = false;
       this.form.reset();
       $('#addnew').modal('show');
       this.$refs.nombre.focus();
@@ -59176,7 +59185,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.CrearUsuario($event)
+                _vm.editmode ? _vm.ActualizarUsuario() : _vm.CrearUsuario()
               },
               keydown: function($event) {
                 return _vm.form.onKeydown($event)
@@ -59205,7 +59214,43 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "modal-content" }, [
-                      _vm._m(2),
+                      _c("div", { staticClass: "modal-header" }, [
+                        _c(
+                          "h5",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: !_vm.editmode,
+                                expression: "!editmode"
+                              }
+                            ],
+                            staticClass: "modal-title",
+                            attrs: { id: "addnew" }
+                          },
+                          [_vm._v("NUEVO USUARIO")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "h5",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.editmode,
+                                expression: "editmode"
+                              }
+                            ],
+                            staticClass: "modal-title",
+                            attrs: { id: "addnew" }
+                          },
+                          [_vm._v("ACTUALIZAR INFO")]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(2)
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "modal-body" }, [
                         _c(
@@ -59513,7 +59558,50 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _vm._m(3)
+                      _c("div", { staticClass: "modal-footer" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: { type: "button", "data-dismiss": "modal" }
+                          },
+                          [_vm._v("Cerrar")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.editmode,
+                                expression: "editmode"
+                              }
+                            ],
+                            staticClass: "btn btn-success",
+                            attrs: { type: "submit" }
+                          },
+                          [_vm._v(" Actualizar")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: !_vm.editmode,
+                                expression: "!editmode"
+                              }
+                            ],
+                            staticClass: "btn btn-primary",
+                            attrs: { type: "submit" }
+                          },
+                          [_vm._v(" Agregar")]
+                        )
+                      ])
                     ])
                   ]
                 )
@@ -59560,45 +59648,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h5", { staticClass: "modal-title", attrs: { id: "addnew" } }, [
-        _vm._v("NUEVO USUARIO")
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Cerrar")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v(" Agregar")]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   }
 ]
 render._withStripped = true
