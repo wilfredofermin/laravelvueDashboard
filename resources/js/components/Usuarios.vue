@@ -9,7 +9,7 @@
                             <h4>USUARIOS</h4>
                         </div>
                         <div class="card-tools">
-                            <button type="button" class="btn btn-block btn-primary btn-md" data-toggle="modal" data-target="#addnew"><i class="fas fa-user-plus ta-fw"></i> Agregar</button>
+                            <button type="button" class="btn btn-block btn-primary btn-md" @click="MostrarModal()"><i class="fas fa-user-plus ta-fw"></i> Agregar</button>
                         </div>
                     </div>
                      <div class="box-body table-responsive no-padding">
@@ -36,7 +36,7 @@
                             <!-- <td><span class="label label-success">Approved</span></td>
                             <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td> -->
                             <td>
-                               <a href="#">
+                               <a href="#" @click="EditarModal(user)" >
                                      <i class="fas fa-edit green"></i>
                                </a>
                                |
@@ -64,7 +64,7 @@
                          
                 <div class="modal-body">     
                   <div class="form-group">
-                    <input v-model="form.nombre" type="text" name="nombre" placeholder="Nombre"
+                    <input v-model="form.nombre" type="text" name="nombre" placeholder="Nombre" ref="nombre" 
                         class="form-control" :class="{ 'is-invalid': form.errors.has('nombre') }">
                     <has-error :form="form" field="nombre"></has-error>
                   </div>
@@ -130,12 +130,22 @@
                 foto : '',
                 tipo : '',
                 email : '',
-                
                 remember: false
+
             })
         }
     },
     methods: {
+            EditarModal(user){
+                this.form.reset();
+                $('#addnew').modal('show'); 
+                this.form.fill(user);
+            },
+            MostrarModal:function(){
+                 this.form.reset();
+                $('#addnew').modal('show');  
+                this.$refs.nombre.focus();  
+            },
          EliminarUsuario(id, nombre, apellidos){
             swal.fire({
                 title: 'Estas seguro?',
