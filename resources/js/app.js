@@ -5,6 +5,19 @@ window.Vue = require('vue');
 
 // import Dashboard from './components/Dashboard.vue';
 
+// SISTEMA DE MENSAJES - SWEET ALERT 2 - REF : https://sweetalert2.github.io/#download
+// Video Tutorial : https://www.youtube.com/watch?v=qJt6EfbQu6E&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=19
+import swal from 'sweetalert2'
+window.swal = swal;
+
+const toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+});
+window.toast = toast;
+
 
 //PROGRESS BAR - REFERENCIA : http://hilongjw.github.io/vue-progressbar/
 // VIDEO TUTORIAL : https://www.youtube.com/watch?v=-Hl4A5cMH_I&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=18
@@ -14,6 +27,7 @@ Vue.use(VueProgressBar, {
     failedColor: 'red',
     height: '3px'
 })
+
 
 //VFORM - COMPONENTE QUE PERMITE TRABAJAR CON LOS FORMUNLARIO - REFERENCIA : https://github.com/wilfredofermin/vform
 window.Form = Form;

@@ -50,11 +50,11 @@
     </div>
             <!-- Modal -->
         <form @submit.prevent="CrearUsuario" @keydown="form.onKeydown($event)">
-            <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="addnewLabel" aria-hidden="true">
+            <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="addnew" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered cl" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addnewLabel">NUEVO USUARIO</h5>
+                    <h5 class="modal-title" id="addnew">NUEVO USUARIO</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -140,9 +140,20 @@
         },
         CrearUsuario() {
             // Submit the form via a POST request
+            // 1- Cargo el progress bar
             this.$Progress.start();
+            // 2- Hago la peticion de la data
             this.form.post('/api/user');
-            this.$Progress.finish();  
+            // 3- Cierro la ventana modal
+             $('#addnew').modal('hide');
+             // 4- Cargo la barra como finalizado por proceso       
+            this.$Progress.finish();
+            // 5- Hago la notificacion 
+            toast.fire({
+                    type: 'success',
+                    title: 'Usuario creado exitosamente'
+                    });       
+           
         }
     },
         created() {
