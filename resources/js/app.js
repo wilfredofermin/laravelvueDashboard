@@ -3,6 +3,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+// Tuggle Button - Referencia : http://vue-js-toggle-button.yev.io/
+import ToggleButton from 'vue-js-toggle-button'
+Vue.use(ToggleButton)
+
+
 // import Dashboard from './components/Dashboard.vue';
 
 // SISTEMA DE MENSAJES - SWEET ALERT 2 - REF : https://sweetalert2.github.io/#download

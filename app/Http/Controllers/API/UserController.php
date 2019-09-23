@@ -14,6 +14,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+       public function __construct()
+    {
+        // Video referencia : https://www.youtube.com/watch?v=GdLz5BRSjQY&list=PLB4AdipoHpxaHDLIaMdtro1eXnQtl_UvE&index=26
+        $this->middleware('api');
+    }
+
+
     public function index()
     {
        return User::latest()->paginate(10);

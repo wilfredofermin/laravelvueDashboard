@@ -28,12 +28,13 @@
                             <tr v-for="user in users" :key="user.id">
                             <td>{{user.nombre | capitalize }}</td>
                             <td>{{user.apellidos | capitalize}}</td>
-                            <td v-show="user.activo"><span class="label label-success"> Activo </span></td>
-                            <td v-show="!user.activo"><span class="label label-danger"> Desactivo </span></td>
+                            <td v-if=user.activo><toggle-button :value="true" color="#99CF16" :sync="true" :labels="true" disabled /></td>
+                            <td v-else><toggle-button :value="false" color="#99CF16" :sync="true" :labels="true" disabled /></td>
                             <td>{{user.tipo | capitalize }}</td>
                             <td>{{user.email}}</td>
                             <td>{{user.created_at | fechas }}</td>
                             <td>{{user.updated_at | fechas }}</td>
+                            
                             <!-- <td><span class="label label-success">Approved</span></td>
                             <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td> -->
                             <td>
@@ -75,7 +76,8 @@
                         class="form-control" :class="{ 'is-invalid': form.errors.has('apellidos') }">
                     <has-error :form="form" field="apellidos"></has-error>
                   </div>
-                   <div class="form-group">
+                   <!-- <div class="form-group" v-show="!editmode"> -->
+                   <div class="form-group" >
                     <input v-model="form.email" type="text" name="email" placeholder="Correo electronico"
                         class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
                     <has-error :form="form" field="email"></has-error>
