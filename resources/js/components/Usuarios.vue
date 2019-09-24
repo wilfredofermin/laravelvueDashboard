@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">
-                            <h4>USUARIOS</h4>
+                            <h4><i class="far fa-circle fa fa-users"></i> Lista de Usuarios </h4>
                         </div>
                         <div class="card-tools">
                             <button type="button" class="btn btn-block btn-primary btn-md" @click="MostrarModal()"><i class="fas fa-user-plus ta-fw"></i> Agregar</button>
@@ -158,6 +158,7 @@
                             this.form.nombre +' '+ this.form.apellidos ,
                             'Ha sido <b>actualizado exitosamente !</b> ',
                             'success'
+                            
                             )
                             // 5 - Mostramos el progress bar que finalizacion
                             this.$Progress.finish();
@@ -209,12 +210,14 @@
                         //Envio el request al servidor - backend
                         this.form.delete('/api/user/' + id).then(()=>{
                             swal.fire(
+                           
                             nombre +' '+ apellidos,
                             'Ha sido <b>removido del sistema</b>',
                             'success'
+                            
                             )
                             Fire.$emit('RecargarData');
-                        })
+                        },)
                      }     
                 });
          },   

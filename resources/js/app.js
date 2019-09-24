@@ -45,6 +45,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue').default },
+    { path: '/developers', component: require('./components/Developers.vue').default },
     { path: '/users', component: require('./components/Usuarios.vue').default },
     { path: '/profile', component: require('./components/Profile.vue').default  }
 ]
@@ -78,6 +79,24 @@ Vue.filter('fechas', function (created) {
 })
 
 // FIN DE FORMATEO //////////////////////////////////////////////////////
+
+
+// PASSPORT COMPONENT //////////////////////////////////
+Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue').default
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue').default
+);
+
 
 // RECARGAR DATOS -> Ref : https://vuejs.org/v2/guide/components-custom-events.html
 window.Fire = new Vue();

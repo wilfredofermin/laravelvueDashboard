@@ -17,7 +17,7 @@ class UserController extends Controller
        public function __construct()
     {
         // Video referencia : https://www.youtube.com/watch?v=GdLz5BRSjQY&list=PLB4AdipoHpxaHDLIaMdtro1eXnQtl_UvE&index=26
-        $this->middleware('api');
+        $this->middleware('auth:api');
     }
 
 
