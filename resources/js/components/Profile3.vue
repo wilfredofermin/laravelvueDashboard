@@ -3,15 +3,15 @@
   max-width: 1600px;
 }
 .widget-user .widget-user-image > img {
-    width: 114px;
-    height: auto;
-    border: 2px solid #ffffff;
+  width: 114px;
+  height: auto;
+  border: 2px solid #99cf16;
 }
 .widget-user .widget-user-header {
-    padding: 6rem;
-    height: 134px;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+  padding: 6rem;
+  height: 134px;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
 }
 .img-circle {
   border-radius: 35%;
@@ -52,7 +52,7 @@
               <!-- /.col -->
               <div class="col-sm-4 border-right">
                 <div class="description-block">
-                   <h5 class="description-header">3,200</h5>
+                  <h5 class="description-header">3,200</h5>
                   <span class="description-text">SALES</span>
                 </div>
                 <!-- /.description-block -->
@@ -122,7 +122,47 @@
                   id="pills-profile"
                   role="tabpanel"
                   aria-labelledby="pills-profile-tab"
-                >...</div>
+                >
+                <div class="form-group">
+                    <input v-model="form.nombre" type="text" name="nombre" placeholder="Nombre" ref="nombre" 
+                        class="form-control" :class="{ 'is-invalid': form.errors.has('nombre') }">
+                    <has-error :form="form" field="nombre"></has-error>
+                  </div>
+                  <div class="form-group">
+                    <input v-model="form.apellidos" type="text" name="apellidos" placeholder="Apellidos"
+                        class="form-control" :class="{ 'is-invalid': form.errors.has('apellidos') }">
+                    <has-error :form="form" field="apellidos"></has-error>
+                  </div>
+                   <!-- <div class="form-group" v-show="!editmode"> -->
+                   <div class="form-group" >
+                    <input v-model="form.email" type="text" name="email" placeholder="Correo electronico"
+                        class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
+                    <has-error :form="form" field="email"></has-error>
+                  </div>
+                   <div class="form-group">
+                    <textarea v-model="form.bio" name="bio" id="bio" class="form-control" rows="5" placeholder="Descripcion del usuario (Opcional)">
+                         class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }">
+                    </textarea>
+                      <has-error :form="form" field="bio"></has-error>
+                    </div>
+         
+                   <div class="form-group">
+                    <select name="tipo" v-model="form.tipo" id="tipo" class="form-control" :class="{ 'is-invalid':form.errors.has('tipo')}">
+                        <option value="" selected disabled hidden>Indique un rol</option>
+                        <option value="user">Usuario Estandar</option>
+                        <option value="admin">Administrador</option>
+                        <option value="gestion">Gestion</option>
+                    </select>
+                    <has-error :form="form" field="tipo"></has-error>
+                  </div>
+                    <div class="form-group">
+                    <input v-model="form.password" type="password" name="password" placeholder="Contraseña"
+                        class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
+                    <has-error :form="form" field="password"></has-error>
+                  </div>
+                
+                
+                </div>
                 <div
                   class="tab-pane fade"
                   id="pills-contact"
@@ -141,8 +181,25 @@
 
 <script>
 export default {
-  mounted() {
-    console.log("Component mounted.");
-  }
+  data() {
+    return {
+      form: new Form({
+        id: "",
+        activo: "",
+        nombre: "",
+        apellidos: "",
+        foto: "",
+        tipo: "",
+        email: "",
+        remember: false
+      })
+    };
+  },
+  created() {
+   
+     axios.get('api/profile')
+     .then (({data}) => (this.form.fill(data)));
+   
+    }
 };
 </script>
