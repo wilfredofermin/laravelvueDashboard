@@ -222,7 +222,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <br>
           {{-- Salir del sistema --}}
-          <li class="nav-item">
+          <li class="nav-item mt-10">
                   <a class="nav-link" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
