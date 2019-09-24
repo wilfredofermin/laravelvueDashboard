@@ -203,6 +203,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Usuarios</p>
                 </router-link>
               </li>
+              <li class="nav-item">
+                <router-link to="/developers" class="nav-link ">
+                  <i class="far fa-circle fa fa-cogs"></i>
+                  <p>Developers</p>
+                </router-link>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -214,15 +220,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>
-          <li class="nav-item">
-            <router-link to="/developers" class="nav-link">
-              <i class="nav-icon fas fa-cogs "></i>
-              <p>
-                Developers
-                {{-- <span class="right badge badge-danger">Nuevo</span> --}}
-              </p>
-            </router-link>
-          </li>
+          <br>
           {{-- Salir del sistema --}}
           <li class="nav-item">
                   <a class="nav-link" href="{{ route('logout') }}"

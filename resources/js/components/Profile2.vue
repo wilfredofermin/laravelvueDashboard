@@ -1,25 +1,26 @@
 <style >
-.widget-user .widget-user-username {
-   color: #fff;
-}   
-.widget-user .widget-user-desc {
-     color: #fff;
+.widget-user .widget-user-header {
+    padding: 1rem;
+    height: 138px;
+    background-position: center center;
+    background-size: cover;
+
 }
 </style>
 
 <template>
     <div class="container">
         <div class="row ">
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12 mt-2">
                 <div class="card card-primary card-outline">
                         <div class="box box-widget widget-user">
                         <!-- Add the bg color to the header using any of the bg-* classes -->
-                        <div class="widget-user-header bg-morado">
-                        <h3 class="widget-user-username">Alexander Pierce</h3>
-                        <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+                        <div class="widget-user-header bg-black" style="background: url('https://ak9.picdn.net/shutterstock/videos/11211479/thumb/1.jpg') center center;">
+                        <h3 class="widget-user-username">Elizabeth Pierce</h3>
+                        <h5 class="widget-user-desc">Web Designer</h5>
                         </div>
                         <div class="widget-user-image">
-                        <img class="img-circle" src="" alt="User Avatar">
+                        <img class="img-circle" src="/img/profile/avatar-wfermin.jpg" alt="User Avatar">
                         </div>
                         <div class="box-footer">
                         <div class="row">

@@ -47,7 +47,7 @@ let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue').default },
     { path: '/developers', component: require('./components/Developers.vue').default },
     { path: '/users', component: require('./components/Usuarios.vue').default },
-    { path: '/profile', component: require('./components/Profile.vue').default  }
+    { path: '/profile', component: require('./components/Profile2.vue').default  }
 ]
 
 const router = new VueRouter({
