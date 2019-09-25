@@ -42,6 +42,7 @@ class UserController extends Controller
             'apellidos' => 'required',
             'email' => 'email|required|min:13|unique:users',
             'password' => 'required|min:8',
+            
         ]);
         // return $request->all();
 

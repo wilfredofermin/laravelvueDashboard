@@ -2095,6 +2095,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2110,12 +2165,28 @@ __webpack_require__.r(__webpack_exports__);
       })
     };
   },
-  created: function created() {
-    var _this = this;
+  methods: {
+    ActualizarFoto: function ActualizarFoto(e) {
+      var _this = this;
 
-    axios.get('api/profile').then(function (_ref) {
+      // console.log('Tengo la imagen')
+      var file = e.target.files[0];
+      var reader = new FileReader();
+
+      reader.onloadend = function (file) {
+        // console.log("RESULT", reader.result);
+        _this.form.foto = reader.result;
+      };
+
+      reader.readAsDataURL(file);
+    }
+  },
+  created: function created() {
+    var _this2 = this;
+
+    axios.get("api/profile").then(function (_ref) {
       var data = _ref.data;
-      return _this.form.fill(data);
+      return _this2.form.fill(data);
     });
   }
 });
@@ -2255,6 +2326,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2262,13 +2407,13 @@ __webpack_require__.r(__webpack_exports__);
       editmode: false,
       users: {},
       form: new Form({
-        id: '',
-        activo: '',
-        nombre: '',
-        apellidos: '',
-        foto: '',
-        tipo: '',
-        email: '',
+        id: "",
+        activo: "",
+        nombre: "",
+        apellidos: "",
+        foto: "",
+        tipo: "",
+        email: "",
         remember: false
       })
     };
@@ -2280,20 +2425,20 @@ __webpack_require__.r(__webpack_exports__);
       // 1 - Cargo el progress bar
       this.$Progress.start(); // 2 - Enviamos la peticion al servidor
 
-      this.form.put('/api/user/' + this.form.id) // 3 - Evaluamos los datos - si esto todo correcto
+      this.form.put("/api/user/" + this.form.id) // 3 - Evaluamos los datos - si esto todo correcto
       .then(function () {
-        //4- Muestro la notificacion 
-        swal.fire(_this.form.nombre + ' ' + _this.form.apellidos, 'Ha sido <b>actualizado exitosamente !</b> ', 'success'); // 5 - Mostramos el progress bar que finalizacion
+        //4- Muestro la notificacion
+        swal.fire(_this.form.nombre + " " + _this.form.apellidos, "Ha sido <b>actualizado exitosamente !</b> ", "success"); // 5 - Mostramos el progress bar que finalizacion
 
         _this.$Progress.finish(); // 6 - Recargamos los datos
 
 
-        Fire.$emit('RecargarData'); //6 - Cierro la ventana modal
+        Fire.$emit("RecargarData"); //6 - Cierro la ventana modal
 
-        $('#addnew').modal('hide'); // toast.fire({
+        $("#addnew").modal("hide"); // toast.fire({
         // type: 'success',
         // title: 'Usuario actualizado exitosamente'
-        // });     
+        // });
       }) // Si se produce algun error
       ["catch"](function () {
         // Muestro una progress bar de error
@@ -2303,33 +2448,33 @@ __webpack_require__.r(__webpack_exports__);
     EditarModal: function EditarModal(user) {
       this.editmode = true;
       this.form.reset();
-      $('#addnew').modal('show');
+      $("#addnew").modal("show");
       this.form.fill(user);
     },
     MostrarModal: function MostrarModal() {
       this.editmode = false;
       this.form.reset();
-      $('#addnew').modal('show');
+      $("#addnew").modal("show");
       this.$refs.nombre.focus();
     },
     EliminarUsuario: function EliminarUsuario(id, nombre, apellidos) {
       var _this2 = this;
 
       swal.fire({
-        title: 'Estas seguro?',
-        html: 'El usuario  ' + nombre + ' ' + apellidos + ' ' + 'sera eliminado',
-        type: 'warning',
+        title: "Estas seguro?",
+        html: "El usuario  " + nombre + " " + apellidos + " " + "sera eliminado",
+        type: "warning",
         footer: '<button type="button" class="btn btn-block btn-danger btn-flat parpadea ">Una vez eliminado no podrás revertirlo !</button>',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, eliminalo!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, eliminalo!"
       }).then(function (result) {
         if (result.value) {
           //Envio el request al servidor - backend
-          _this2.form["delete"]('/api/user/' + id).then(function () {
-            swal.fire(nombre + ' ' + apellidos, 'Ha sido <b>removido del sistema</b>', 'success');
-            Fire.$emit('RecargarData');
+          _this2.form["delete"]("/api/user/" + id).then(function () {
+            swal.fire(nombre + " " + apellidos, "Ha sido <b>removido del sistema</b>", "success");
+            Fire.$emit("RecargarData");
           });
         }
       });
@@ -2337,7 +2482,7 @@ __webpack_require__.r(__webpack_exports__);
     CargarUsuarios: function CargarUsuarios() {
       var _this3 = this;
 
-      axios.get('api/user').then(function (_ref) {
+      axios.get("api/user").then(function (_ref) {
         var data = _ref.data;
         return _this3.users = data.data;
       });
@@ -2345,7 +2490,7 @@ __webpack_require__.r(__webpack_exports__);
     CrearUsuario: function CrearUsuario() {
       var _this4 = this;
 
-      this.form.post('/api/user') //DE TODO ESTAR CORRECTO ----> video tutorail : https://www.youtube.com/watch?v=97JFc7g_0wE&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=22
+      this.form.post("/api/user") //DE TODO ESTAR CORRECTO ----> video tutorail : https://www.youtube.com/watch?v=97JFc7g_0wE&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=22
       .then(function () {
         // Submit the form via a POST request
         // 1- Cargo el progress bar
@@ -2353,16 +2498,16 @@ __webpack_require__.r(__webpack_exports__);
         //3- Recargo los datos
 
 
-        Fire.$emit('RecargarData'); //4- Cierro la ventana modal
+        Fire.$emit("RecargarData"); //4- Cierro la ventana modal
 
-        $('#addnew').modal('hide'); //5- Cargo la barra como finalizado por proceso       
+        $("#addnew").modal("hide"); //5- Cargo la barra como finalizado por proceso
 
-        _this4.$Progress.finish(); //6- Hago la notificacion 
+        _this4.$Progress.finish(); //6- Hago la notificacion
 
 
         toast.fire({
-          type: 'success',
-          title: 'Usuario creado exitosamente'
+          type: "success",
+          title: "Usuario creado exitosamente"
         });
       }) //DE LO CONTRARIO
       ["catch"](function () {
@@ -2373,12 +2518,12 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this5 = this;
 
-    this.CargarUsuarios(); // RECARGAR DATA 
+    this.CargarUsuarios(); // RECARGAR DATA
     // Opcion A
     // Referencia : https://vuejs.org/v2/guide/components-custom-events.html
     // Metodo de recarga con Vue - video referencia : https://www.youtube.com/watch?v=DHuTkJzH2jI&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=21
 
-    Fire.$on('RecargarData', function () {
+    Fire.$on("RecargarData", function () {
       _this5.CargarUsuarios();
     }); // Opcion B
     //Actualizar datos cada 3 segundos video referencia : https://www.youtube.com/watch?v=AqO_afAc1kQ&list=PL2GMR7k4bG4QOzLtn4WgMmLAjfKiAvRa1&index=20
@@ -7620,7 +7765,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.container {\r\n  max-width: 1600px;\n}\n.widget-user .widget-user-image > img {\r\n  width: 114px;\r\n  height: auto;\r\n  border: 2px solid #99cf16;\n}\n.widget-user .widget-user-header {\r\n  padding: 6rem;\r\n  height: 134px;\r\n  border-top-left-radius: 0.25rem;\r\n  border-top-right-radius: 0.25rem;\n}\n.img-circle {\r\n  border-radius: 35%;\n}\n.nav-pills .nav-link.active,\r\n.nav-pills .show > .nav-link {\r\n  color: #fff;\r\n  background-color: #8778b2;\n}\r\n", ""]);
+exports.push([module.i, "\n.container {\r\n  max-width: 1600px;\n}\n.widget-user .widget-user-image > img {\r\n  width: 114px;\r\n  height: auto;\r\n  border: 2px solid #99cf16;\n}\n.widget-user .widget-user-header {\r\n  padding: 6rem;\r\n  height: 134px;\r\n  border-top-left-radius: 0.25rem;\r\n  border-top-right-radius: 0.25rem;\n}\n.img-circle {\r\n  border-radius: 35%;\n}\n.nav-pills .nav-link.active,\r\n.nav-pills .show > .nav-link {\r\n  color: #fff;\r\n  background-color: #8778b2;\n}\n.nav-tabs .nav-link.active,\r\n.nav-tabs .nav-item.show .nav-link {\r\n  color: #f4f4f5;\r\n  background-color: #8778b2;\r\n  border-color: #728e1d #dee2e6 #98c61b;\n}\r\n", ""]);
 
 // exports
 
@@ -61710,43 +61855,59 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row card card-primary card-outline" }, [
       _c("div", { staticClass: "col-md-12 mt-2" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "box box-widget widget-user" }, [
+          _c(
+            "div",
+            {
+              staticClass: "widget-user-header bg-black",
+              staticStyle: {
+                background:
+                  "url('https://ak9.picdn.net/shutterstock/videos/11211479/thumb/1.jpg') center center"
+              }
+            },
+            [
+              _c("h2", { staticClass: "widget-user-username" }, [
+                _vm._v(
+                  _vm._s(
+                    _vm._f("capitalize")(
+                      _vm.form.nombre + " " + _vm.form.apellidos
+                    )
+                  )
+                )
+              ]),
+              _vm._v(" "),
+              _c("h5", { staticClass: "widget-user-desc" }, [
+                _vm._v(_vm._s(_vm._f("capitalize")(_vm.form.tipo)))
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1)
+        ]),
         _vm._v(" "),
         _c("br"),
         _vm._v(" "),
         _c("div", { staticClass: "col-lg-12" }, [
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-body" }, [
-              _vm._m(1),
+              _vm._m(2),
+              _vm._v(" "),
+              _c("br"),
               _vm._v(" "),
               _c(
                 "div",
-                {
-                  staticClass: "tab-content",
-                  attrs: { id: "pills-tabContent" }
-                },
+                { staticClass: "tab-content", attrs: { id: "myTabContent" } },
                 [
                   _c(
                     "div",
                     {
                       staticClass: "tab-pane fade show active",
                       attrs: {
-                        id: "pills-home",
+                        id: "profile",
                         role: "tabpanel",
-                        "aria-labelledby": "pills-home-tab"
-                      }
-                    },
-                    [_vm._v("...")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "tab-pane fade",
-                      attrs: {
-                        id: "pills-profile",
-                        role: "tabpanel",
-                        "aria-labelledby": "pills-profile-tab"
+                        "aria-labelledby": "profile-tab"
                       }
                     },
                     [
@@ -62002,6 +62163,20 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
+                      _c("form", [
+                        _c("div", { staticClass: "form-group" }, [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control-file",
+                            attrs: { type: "file", id: "foto" },
+                            on: { change: _vm.ActualizarFoto }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(4),
+                      _vm._v(" "),
                       _c(
                         "div",
                         { staticClass: "form-group" },
@@ -62053,9 +62228,9 @@ var render = function() {
                     {
                       staticClass: "tab-pane fade",
                       attrs: {
-                        id: "pills-contact",
+                        id: "actividad",
                         role: "tabpanel",
-                        "aria-labelledby": "pills-contact-tab"
+                        "aria-labelledby": "actividad-tab"
                       }
                     },
                     [_vm._v("...")]
@@ -62063,7 +62238,30 @@ var render = function() {
                 ]
               )
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "center-block" },
+            [
+              _c("center", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-success",
+                    attrs: { type: "button", "mb-3": "" }
+                  },
+                  [
+                    _c("i", { staticClass: "fas fa-refresh " }),
+                    _vm._v(" Actualizar Info")
+                  ]
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br")
         ])
       ])
     ])
@@ -62074,63 +62272,45 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box box-widget widget-user" }, [
-      _c(
-        "div",
-        {
-          staticClass: "widget-user-header bg-black",
-          staticStyle: {
-            background:
-              "url('https://ak9.picdn.net/shutterstock/videos/11211479/thumb/1.jpg') center center"
-          }
-        },
-        [
-          _c("h3", { staticClass: "widget-user-username" }, [
-            _vm._v("Elizabeth Pierce")
-          ]),
-          _vm._v(" "),
-          _c("h5", { staticClass: "widget-user-desc" }, [
-            _vm._v("Web Designer")
+    return _c("div", { staticClass: "widget-user-image" }, [
+      _c("img", {
+        staticClass: "img-circle",
+        attrs: { src: "/img/profile/wfermin.jpg", alt: "User Avatar" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-footer" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-4 border-right" }, [
+          _c("div", { staticClass: "description-block" }, [
+            _c("h5", { staticClass: "description-header" }, [_vm._v("26")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "description-text" }, [
+              _vm._v("SOLICITUDES PENDIENTES")
+            ])
           ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "widget-user-image" }, [
-        _c("img", {
-          staticClass: "img-circle",
-          attrs: { src: "/img/profile/wfermin.jpg", alt: "User Avatar" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "box-footer" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-4 border-right" }, [
-            _c("div", { staticClass: "description-block" }, [
-              _c("h5", { staticClass: "description-header" }, [
-                _vm._v("3,200")
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "description-text" }, [_vm._v("SALES")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-4 border-right" }, [
+          _c("div", { staticClass: "description-block" }, [
+            _c("h5", { staticClass: "description-header" }, [_vm._v("120")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "description-text" }, [
+              _vm._v("SOLICITUDES CERRADAS")
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-4 border-right" }, [
-            _c("div", { staticClass: "description-block" }, [
-              _c("h5", { staticClass: "description-header" }, [
-                _vm._v("3,200")
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "description-text" }, [_vm._v("SALES")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-4" }, [
-            _c("div", { staticClass: "description-block" }, [
-              _c("h5", { staticClass: "description-header" }, [_vm._v("35")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "description-text" }, [
-                _vm._v("PRODUCTS")
-              ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-4" }, [
+          _c("div", { staticClass: "description-block" }, [
+            _c("h5", { staticClass: "description-header" }, [_vm._v("3")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "description-text" }, [
+              _vm._v("SOLICITUDES VENCIDAS")
             ])
           ])
         ])
@@ -62143,10 +62323,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "ul",
-      {
-        staticClass: "nav nav-pills mb-3 verdevida",
-        attrs: { id: "pills-tab", role: "tablist" }
-      },
+      { staticClass: "nav nav-tabs", attrs: { id: "myTab", role: "tablist" } },
       [
         _c("li", { staticClass: "nav-item" }, [
           _c(
@@ -62154,33 +62331,15 @@ var staticRenderFns = [
             {
               staticClass: "nav-link active",
               attrs: {
-                id: "pills-home-tab",
-                "data-toggle": "pill",
-                href: "#pills-home",
+                id: "profile-tab",
+                "data-toggle": "tab",
+                href: "#profile",
                 role: "tab",
-                "aria-controls": "pills-home",
-                "aria-selected": "true"
-              }
-            },
-            [_vm._v("Home")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link moradoviva",
-              attrs: {
-                id: "pills-profile-tab",
-                "data-toggle": "pill",
-                href: "#pills-profile",
-                role: "tab",
-                "aria-controls": "pills-profile",
+                "aria-controls": "profile",
                 "aria-selected": "false"
               }
             },
-            [_vm._v("Profile")]
+            [_vm._v("Detalles")]
           )
         ]),
         _vm._v(" "),
@@ -62190,19 +62349,37 @@ var staticRenderFns = [
             {
               staticClass: "nav-link",
               attrs: {
-                id: "pills-contact-tab",
-                "data-toggle": "pill",
-                href: "#pills-contact",
+                id: "actividad-tab",
+                "data-toggle": "tab",
+                href: "#actividad",
                 role: "tab",
-                "aria-controls": "pills-contact",
-                "aria-selected": "false"
+                "aria-controls": "actividad",
+                "aria-selected": "true"
               }
             },
-            [_vm._v("Contact")]
+            [_vm._v("Actividad")]
           )
         ])
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Foto" } }, [
+      _c("i", { staticClass: "fas fa-edit" }),
+      _vm._v("Cambiar imagen\n                    ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", [
+      _c("b", [_vm._v("Contraseña")]),
+      _vm._v("(Dejar vacio de no cambiar)\n                ")
+    ])
   }
 ]
 render._withStripped = true
@@ -62248,7 +62425,7 @@ var render = function() {
                   },
                   [
                     _c("i", { staticClass: "fas fa-user-plus ta-fw" }),
-                    _vm._v(" Agregar")
+                    _vm._v(" Agregar\n              ")
                   ]
                 )
               ])
@@ -62331,7 +62508,7 @@ var render = function() {
                             [_c("i", { staticClass: "fas fa-edit green" })]
                           ),
                           _vm._v(
-                            "\r\n                               |\r\n                               "
+                            "\n                    |\n                    "
                           ),
                           _c(
                             "a",
@@ -62606,7 +62783,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\r\n                         class=\"form-control\" :class=\"{ 'is-invalid': form.errors.has('bio') }\">\r\n                    "
+                                  "                       class=\"form-control\" :class=\"{ 'is-invalid': form.errors.has('bio') }\">\n                  "
                                 )
                               ]
                             ),
@@ -62763,7 +62940,7 @@ var render = function() {
                             staticClass: "btn btn-success",
                             attrs: { type: "submit" }
                           },
-                          [_vm._v(" Actualizar")]
+                          [_vm._v("Actualizar")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -62780,7 +62957,7 @@ var render = function() {
                             staticClass: "btn btn-primary",
                             attrs: { type: "submit" }
                           },
-                          [_vm._v(" Agregar")]
+                          [_vm._v("Agregar")]
                         )
                       ])
                     ])
@@ -62802,7 +62979,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-title" }, [
       _c("h4", [
         _c("i", { staticClass: "far fa-circle fa fa-users" }),
-        _vm._v(" Lista de Usuarios ")
+        _vm._v(" Lista de Usuarios\n              ")
       ])
     ])
   },
@@ -62823,7 +63000,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Creacion")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Modificado ")]),
+      _c("th", [_vm._v("Modificado")]),
       _vm._v(" "),
       _c("th", [_vm._v("Modificar")])
     ])
