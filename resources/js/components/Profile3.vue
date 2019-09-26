@@ -82,107 +82,91 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <!-- Aqui body del formulario -->
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item">
-                  <a
-                    class="nav-link active"
-                    id="profile-tab"
-                    data-toggle="tab"
-                    href="#profile"
-                    role="tab"
-                    aria-controls="profile"
-                    aria-selected="false"
-                  >Detalles</a>
+                    <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">Profile</a>
                 </li>
-
                 <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    id="actividad-tab"
-                    data-toggle="tab"
-                    href="#actividad"
-                    role="tab"
-                    aria-controls="actividad"
-                    aria-selected="true"
-                  >Actividad</a>
+                    <a class="nav-link " id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false">Home</a>
                 </li>
-              </ul>
-              <br />
-              <div class="tab-content" id="myTabContent">
-                <div
-                  class="tab-pane fade show active"
-                  id="profile"
-                  role="tabpanel"
-                  aria-labelledby="profile-tab"
-                >
-                  <!-- Inicio aqui -->
+               
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+                </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+               
+                <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
-                  <div class="form-group">
-                    <input
-                      v-model="form.nombre"
-                      type="text"
-                      name="nombre"
-                      placeholder="Nombre"
-                      ref="nombre"
-                      class="form-control"
-                      :class="{ 'is-invalid': form.errors.has('nombre') }"
-                    />
-                    <has-error :form="form" field="nombre"></has-error>
-                  </div>
-                  <div class="form-group">
-                    <input
-                      v-model="form.apellidos"
-                      type="text"
-                      name="apellidos"
-                      placeholder="Apellidos"
-                      class="form-control"
-                      :class="{ 'is-invalid': form.errors.has('apellidos') }"
-                    />
-                    <has-error :form="form" field="apellidos"></has-error>
-                  </div>
-                  <!-- <div class="form-group" v-show="!editmode"> -->
-                  <div class="form-group">
-                    <input
-                      v-model="form.email"
-                      type="text"
-                      name="email"
-                      
-                      placeholder="Correo electronico"
-                      class="form-control"
-                      :class="{ 'is-invalid': form.errors.has('email') }"
-                    />
-                    <has-error :form="form" field="email"></has-error>
-                  </div>
-                  <div class="form-group">
-                    <textarea
-                      v-model="form.bio"
-                      name="bio"
-                      id="bio"
-                      class="form-control"
-                      rows="5"
-                      placeholder="Descripcion del usuario (Opcional)"
-                    >
+                   <!-- Inicio aqui -->
+                  <form @submit.prevent="ActualizarUsuario()">
+                    <div class="form-group">
+                      <input
+                        v-model="form.nombre"
+                        type="text"
+                        name="nombre"
+                        placeholder="Nombre"
+                        ref="nombre"
+                        class="form-control"
+                        :class="{ 'is-invalid': form.errors.has('nombre') }"
+                      />
+                      <has-error :form="form" field="nombre"></has-error>
+                    </div>
+
+                    <div class="form-group">
+                      <input
+                        v-model="form.apellidos"
+                        type="text"
+                        name="apellidos"
+                        placeholder="Apellidos"
+                        class="form-control"
+                        :class="{ 'is-invalid': form.errors.has('apellidos') }"
+                      />
+                      <has-error :form="form" field="apellidos"></has-error>
+                    </div>
+                    <!-- <div class="form-group" v-show="!editmode"> -->
+                    <div class="form-group">
+                      <input
+                        v-model="form.email"
+                        type="text"
+                        name="email"
+                        placeholder="Correo electronico"
+                        class="form-control"
+                        :class="{ 'is-invalid': form.errors.has('email') }"
+                      />
+                      <has-error :form="form" field="email"></has-error>
+                    </div>
+                    <div class="form-group">
+                      <textarea
+                        v-model="form.bio"
+                        name="bio"
+                        id="bio"
+                        class="form-control"
+                        rows="5"
+                        placeholder="Descripcion del usuario (Opcional)"
+                      >
                          class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }">
                     </textarea>
-                    <has-error :form="form" field="bio"></has-error>
-                  </div>
+                      <has-error :form="form" field="bio"></has-error>
+                    </div>
 
-                  <div class="form-group">
-                    <select
-                      name="tipo"
-                      v-model="form.tipo"
-                      id="tipo"
-                      class="form-control"
-                      :class="{ 'is-invalid':form.errors.has('tipo')}"
-                    >
-                      <option value selected disabled hidden>Indique un rol</option>
-                      <option value="user">Usuario Estandar</option>
-                      <option value="admin">Administrador</option>
-                      <option value="gestion">Gestion</option>
-                    </select>
-                    <has-error :form="form" field="tipo"></has-error>
-                  </div>
-                  <form>
+                    <div class="form-group">
+                      <select
+                        name="tipo"
+                        v-model="form.tipo"
+                        id="tipo"
+                        class="form-control"
+                        :class="{ 'is-invalid':form.errors.has('tipo')}"
+                      >
+                        <option value selected disabled hidden>Indique un rol</option>
+                        <option value="user">Usuario Estandar</option>
+                        <option value="admin">Administrador</option>
+                        <option value="gestion">Gestion</option>
+                      </select>
+                      <has-error :form="form" field="tipo"></has-error>
+                    </div>
+                    <form>
                     <div class="form-group">
                       <label for="Foto">
                         <i class="fas fa-edit"></i>Cambiar imagen
@@ -195,43 +179,42 @@
                       />
                     </div>
                   </form>
-                  <small>
-                    <b>Contraseña</b>(Dejar vacio de no cambiar)
-                  </small>
-                  <div class="form-group">
-                    <input
-                      v-model="form.password"
-                      type="password"
-                      name="password"
-                      placeholder="Contraseña"
-                      class="form-control"
-                      :class="{ 'is-invalid': form.errors.has('password') }"
-                    />
-                    <has-error :form="form" field="password"></has-error>
-                  </div>
+                    <small>
+                      <b>Contraseña</b>(Dejar vacio de no cambiar)
+                    </small>
+                    <div class="form-group">
+                      <input
+                        v-model="form.password"
+                        type="password"
+                        name="password"
+                        placeholder="Contraseña"
+                        class="form-control"
+                        :class="{ 'is-invalid': form.errors.has('password') }"
+                      />
+                      <has-error :form="form" field="password"></has-error>
+                    </div>
 
-                  <!-- Finaliza aqui -->
+                    <!-- Fin contenido  -->
+                    <div class="center-block">
+                      <center>
+                        <button type="submit" class="btn btn-primary">
+                          <i class="fa fa-retweet"></i> Actualizar Info
+                        </button>
+                      </center>
+                    </div>
+                  </form>
                 </div>
-                <div
-                  class="tab-pane fade"
-                  id="actividad"
-                  role="tabpanel"
-                  aria-labelledby="actividad-tab"
-                >...</div>
-              </div>
+                 <div class="tab-pane fade " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
+                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+                </div>
+                <!-- Fin body formulario -->
             </div>
           </div>
-          <div class="center-block">
-              <center>
-              <button type="button" class="btn btn-outline-success" mb-3><i class="fas fa-refresh "></i> Actualizar Info</button>
-              </center>
-          </div>
-          <br>
         </div>
-        <!-- /.card -->
       </div>
     </div>
   </div>
+  <!-- /.card -->
 </template>
 
 <script>
@@ -258,10 +241,10 @@ export default {
 
       let reader = new FileReader();
 
-      reader.onloadend = (file) => {
+      reader.onloadend = file => {
         // console.log("RESULT", reader.result);
         this.form.foto = reader.result;
-      }
+      };
       reader.readAsDataURL(file);
     }
   },
