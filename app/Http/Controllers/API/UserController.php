@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Hash;
 
+
 class UserController extends Controller
 {
     /**
@@ -68,9 +69,32 @@ class UserController extends Controller
     {
         //
     }
+
     public function profile()
     {
        return auth('api')->user();
+    }
+
+    public function updateProfile(Request $request)
+    {
+                $this->validate($request, [
+                'nombre' => 'required',
+                'apellidos' => 'required',
+                // 'email' => 'email|required|min:13|unique:users,'.$user->id,
+                'password' => 'sometime|min:8',
+                ]);
+
+                //dd($request);
+                $user = auth('api') ->user();
+                // return ['messege' => 'Profile actualizado !'];
+                if($request->foto){
+
+                    $name = preg_match_all('/data\:image\/([a-zA-Z]+)\;base64/',$request->foto,$matched);
+                    // $name = time().'.'.explode('/',explode(':',substr($request ->foto, 0, strpos($request->foto, ';')))[1])[1];
+                    \Image::make($request->foto)->resize(300, 200)->save(public_path('img/profile/').$name);
+
+                }
+       
     }
 
     /**

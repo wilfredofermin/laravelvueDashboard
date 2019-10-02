@@ -88,7 +88,7 @@
                     <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false">Home</a>
+                    <a class="nav-link " id="pills-actividad-tab" data-toggle="pill" href="#pills-actividad" role="tab" aria-controls="pills-actividad" aria-selected="false">Actividad</a>
                 </li>
                
                 <li class="nav-item">
@@ -204,7 +204,9 @@
                     </div>
                   </form>
                 </div>
-                 <div class="tab-pane fade " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
+                 <div class="tab-pane fade " id="pills-actividad" role="tabpanel" aria-labelledby="pills-actividad-tab">
+                     ACTIVIDAD AQUI
+                     </div>
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
                 </div>
                 <!-- Fin body formulario -->
@@ -235,6 +237,20 @@ export default {
   },
 
   methods: {
+      ActualizarUsuario(){
+         this.form.put('api/profile')
+                  .then(() =>{
+                         toast.fire({
+                            type: "success",
+                            title: "Perfil actualizado exitosamente"
+                        
+                         });
+
+                  })
+                  .catch(() =>{
+
+                  });  
+      },
     ActualizarFoto(e) {
       // console.log('Tengo la imagen')
       let file = e.target.files[0];

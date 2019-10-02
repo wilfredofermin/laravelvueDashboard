@@ -103,6 +103,15 @@
                 </div>
 
                 <div class="modal-body">
+                    <span aria-hidden="true"><small>Estado :</small></span>
+                    <toggle-button
+                        :value="true"
+                        color="#99CF16"
+                        :sync="true"
+                        :labels="true" 
+                      />
+                      
+                      <hr />
                   <div class="form-group">
                     <input
                       v-model="form.nombre"

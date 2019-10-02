@@ -2133,6 +2133,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2149,6 +2151,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    ActualizarUsuario: function ActualizarUsuario() {
+      this.form.put('api/profile').then(function () {
+        toast.fire({
+          type: "success",
+          title: "Perfil actualizado exitosamente"
+        });
+      })["catch"](function () {});
+    },
     ActualizarFoto: function ActualizarFoto(e) {
       var _this = this;
 
@@ -2185,6 +2195,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -62260,12 +62279,16 @@ var render = function() {
                     {
                       staticClass: "tab-pane fade ",
                       attrs: {
-                        id: "pills-home",
+                        id: "pills-actividad",
                         role: "tabpanel",
-                        "aria-labelledby": "pills-home-tab"
+                        "aria-labelledby": "pills-actividad-tab"
                       }
                     },
-                    [_vm._v("...")]
+                    [
+                      _vm._v(
+                        "\n                   ACTIVIDAD AQUI\n                   "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -62374,15 +62397,15 @@ var staticRenderFns = [
             {
               staticClass: "nav-link ",
               attrs: {
-                id: "pills-home-tab",
+                id: "pills-actividad-tab",
                 "data-toggle": "pill",
-                href: "#pills-home",
+                href: "#pills-actividad",
                 role: "tab",
-                "aria-controls": "pills-home",
+                "aria-controls": "pills-actividad",
                 "aria-selected": "false"
               }
             },
-            [_vm._v("Home")]
+            [_vm._v("Actividad")]
           )
         ]),
         _vm._v(" "),
@@ -62653,164 +62676,47 @@ var render = function() {
                         _vm._m(2)
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "modal-body" }, [
-                        _c(
-                          "div",
-                          { staticClass: "form-group" },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.nombre,
-                                  expression: "form.nombre"
-                                }
-                              ],
-                              ref: "nombre",
-                              staticClass: "form-control",
-                              class: {
-                                "is-invalid": _vm.form.errors.has("nombre")
-                              },
-                              attrs: {
-                                type: "text",
-                                name: "nombre",
-                                placeholder: "Nombre"
-                              },
-                              domProps: { value: _vm.form.nombre },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "nombre",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("has-error", {
-                              attrs: { form: _vm.form, field: "nombre" }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "form-group" },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.apellidos,
-                                  expression: "form.apellidos"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              class: {
-                                "is-invalid": _vm.form.errors.has("apellidos")
-                              },
-                              attrs: {
-                                type: "text",
-                                name: "apellidos",
-                                placeholder: "Apellidos"
-                              },
-                              domProps: { value: _vm.form.apellidos },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "apellidos",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("has-error", {
-                              attrs: { form: _vm.form, field: "apellidos" }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "form-group" },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.email,
-                                  expression: "form.email"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              class: {
-                                "is-invalid": _vm.form.errors.has("email")
-                              },
-                              attrs: {
-                                type: "text",
-                                name: "email",
-                                placeholder: "Correo electronico"
-                              },
-                              domProps: { value: _vm.form.email },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "email",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("has-error", {
-                              attrs: { form: _vm.form, field: "email" }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "form-group" },
-                          [
-                            _c(
-                              "textarea",
-                              {
+                      _c(
+                        "div",
+                        { staticClass: "modal-body" },
+                        [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c("toggle-button", {
+                            attrs: {
+                              value: true,
+                              color: "#99CF16",
+                              sync: true,
+                              labels: true
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("hr"),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("input", {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.form.bio,
-                                    expression: "form.bio"
+                                    value: _vm.form.nombre,
+                                    expression: "form.nombre"
                                   }
                                 ],
+                                ref: "nombre",
                                 staticClass: "form-control",
-                                attrs: {
-                                  name: "bio",
-                                  id: "bio",
-                                  rows: "5",
-                                  placeholder:
-                                    "Descripcion del usuario (Opcional)"
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("nombre")
                                 },
-                                domProps: { value: _vm.form.bio },
+                                attrs: {
+                                  type: "text",
+                                  name: "nombre",
+                                  placeholder: "Nombre"
+                                },
+                                domProps: { value: _vm.form.nombre },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
@@ -62818,146 +62724,285 @@ var render = function() {
                                     }
                                     _vm.$set(
                                       _vm.form,
-                                      "bio",
+                                      "nombre",
                                       $event.target.value
                                     )
                                   }
                                 }
-                              },
-                              [
-                                _vm._v(
-                                  "                       class=\"form-control\" :class=\"{ 'is-invalid': form.errors.has('bio') }\">\n                  "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("has-error", {
-                              attrs: { form: _vm.form, field: "bio" }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "form-group" },
-                          [
-                            _c(
-                              "select",
-                              {
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "nombre" }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("input", {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.form.tipo,
-                                    expression: "form.tipo"
+                                    value: _vm.form.apellidos,
+                                    expression: "form.apellidos"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 class: {
-                                  "is-invalid": _vm.form.errors.has("tipo")
+                                  "is-invalid": _vm.form.errors.has("apellidos")
                                 },
-                                attrs: { name: "tipo", id: "tipo" },
+                                attrs: {
+                                  type: "text",
+                                  name: "apellidos",
+                                  placeholder: "Apellidos"
+                                },
+                                domProps: { value: _vm.form.apellidos },
                                 on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
                                     _vm.$set(
                                       _vm.form,
-                                      "tipo",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
+                                      "apellidos",
+                                      $event.target.value
                                     )
                                   }
                                 }
-                              },
-                              [
-                                _c(
-                                  "option",
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "apellidos" }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("input", {
+                                directives: [
                                   {
-                                    attrs: {
-                                      value: "",
-                                      selected: "",
-                                      disabled: "",
-                                      hidden: ""
-                                    }
-                                  },
-                                  [_vm._v("Indique un rol")]
-                                ),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "user" } }, [
-                                  _vm._v("Usuario Estandar")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "admin" } }, [
-                                  _vm._v("Administrador")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "gestion" } }, [
-                                  _vm._v("Gestion")
-                                ])
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("has-error", {
-                              attrs: { form: _vm.form, field: "tipo" }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "form-group" },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.password,
-                                  expression: "form.password"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              class: {
-                                "is-invalid": _vm.form.errors.has("password")
-                              },
-                              attrs: {
-                                type: "password",
-                                name: "password",
-                                placeholder: "Contraseña"
-                              },
-                              domProps: { value: _vm.form.password },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.email,
+                                    expression: "form.email"
                                   }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "password",
-                                    $event.target.value
-                                  )
+                                ],
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("email")
+                                },
+                                attrs: {
+                                  type: "text",
+                                  name: "email",
+                                  placeholder: "Correo electronico"
+                                },
+                                domProps: { value: _vm.form.email },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "email",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("has-error", {
-                              attrs: { form: _vm.form, field: "password" }
-                            })
-                          ],
-                          1
-                        )
-                      ]),
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "email" }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c(
+                                "textarea",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.bio,
+                                      expression: "form.bio"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    name: "bio",
+                                    id: "bio",
+                                    rows: "5",
+                                    placeholder:
+                                      "Descripcion del usuario (Opcional)"
+                                  },
+                                  domProps: { value: _vm.form.bio },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "bio",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "                       class=\"form-control\" :class=\"{ 'is-invalid': form.errors.has('bio') }\">\n                  "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "bio" }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.tipo,
+                                      expression: "form.tipo"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid": _vm.form.errors.has("tipo")
+                                  },
+                                  attrs: { name: "tipo", id: "tipo" },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.form,
+                                        "tipo",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    {
+                                      attrs: {
+                                        value: "",
+                                        selected: "",
+                                        disabled: "",
+                                        hidden: ""
+                                      }
+                                    },
+                                    [_vm._v("Indique un rol")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "user" } }, [
+                                    _vm._v("Usuario Estandar")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "admin" } }, [
+                                    _vm._v("Administrador")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "gestion" } },
+                                    [_vm._v("Gestion")]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "tipo" }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.password,
+                                    expression: "form.password"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("password")
+                                },
+                                attrs: {
+                                  type: "password",
+                                  name: "password",
+                                  placeholder: "Contraseña"
+                                },
+                                domProps: { value: _vm.form.password },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "password",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "password" }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("div", { staticClass: "modal-footer" }, [
                         _c(
@@ -63064,6 +63109,14 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "aria-hidden": "true" } }, [
+      _c("small", [_vm._v("Estado :")])
+    ])
   }
 ]
 render._withStripped = true
